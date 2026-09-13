@@ -1,51 +1,18 @@
 # Low-Level Image Feature Extraction
 
-A simple Digital Image Processing (DIP) project demonstrating low-level image feature extraction using Python, OpenCV, NumPy, and Matplotlib.
+A small Digital Image Processing project that turns an image into simple numerical features for colour, texture, and shape.
 
-The project focuses on three basic feature categories:
+The project is written in Python and uses OpenCV, NumPy, and Matplotlib. Each feature type is implemented separately and then combined into a single feature vector.
 
-- **Colour**
-- **Texture**
-- **Shape**
+## What it covers
 
-It also demonstrates how the extracted features can be combined into a single feature vector.
+### Colour
 
-## Project Objectives
+- RGB and HSV representations
+- RGB histograms
+- Mean, minimum, and maximum channel values
 
-The main objective is to understand how visual information in an image can be converted into simple numerical features.
-
-The project follows this pipeline:
-
-```text
-                    Input Image
-                         │
-          ┌──────────────┼──────────────┐
-          ↓              ↓              ↓
-       Colour         Texture         Shape
-          │              │              │
-      RGB / HSV       Grayscale      Threshold
-      Histogram       Statistics         ↓
-      Statistics      Histogram         Edges
-                                         ↓
-                                      Contours
-          │              │              │
-          └──────────────┼──────────────┘
-                         ↓
-                Combined Feature Vector
-```
-
-## Features Implemented
-
-### Colour Features
-
-- RGB colour representation
-- HSV colour representation
-- RGB histogram
-- Mean
-- Minimum
-- Maximum
-
-### Texture Features
+### Texture
 
 - Grayscale conversion
 - Mean intensity
@@ -53,24 +20,37 @@ The project follows this pipeline:
 - Standard deviation
 - Grayscale histogram
 
-### Shape Features
+### Shape
 
 - Grayscale conversion
 - Thresholding
 - Canny edge detection
 - Contour detection
-- Contour area
-- Contour perimeter
+- Contour area and perimeter
 
-### Feature Fusion
+### Feature fusion
 
-The project combines colour, texture, and shape values using simple feature concatenation.
+The colour, texture, and shape outputs are concatenated into one feature vector that can be used as input to a later analysis or machine-learning step.
 
-## Project Structure
+## Processing pipeline
 
 ```text
-low-level-feature-extraction/
-│
+Input image
+    │
+    ├── Colour  ──> RGB / HSV statistics + histogram
+    │
+    ├── Texture ─> Grayscale statistics + histogram
+    │
+    └── Shape   ─> Threshold -> Edges -> Contours
+                       │
+                       ▼
+              Combined feature vector
+```
+
+## Repository layout
+
+```text
+low-level-image-feature-extraction/
 ├── article/
 │   ├── 01-introduction.md
 │   ├── 02-low-level-features.md
@@ -81,43 +61,39 @@ low-level-feature-extraction/
 │   ├── 07-conclusion.md
 │   ├── 08-combining-features.md
 │   └── references.md
-│
 ├── data/
 │   └── sample.jpg
-│
 ├── examples/
 │   ├── colour/
 │   ├── texture/
 │   ├── shape/
 │   └── fusion/
-│
 ├── src/
 │   ├── colour/
 │   ├── texture/
 │   ├── shape/
 │   └── fusion/
-│
 ├── tests/
 │   ├── test_colour.py
 │   ├── test_texture.py
 │   ├── test_shape.py
 │   └── test_fusion.py
-│
-├── article/
 ├── requirements.txt
-├── README.md
-└── LICENSE
+├── LICENSE
+└── README.md
 ```
 
 ## Requirements
 
-- Python 3.10+
+- Python 3.10 or newer
 - OpenCV
 - NumPy
 - Matplotlib
 - Pytest
 
-## Installation
+The repository's `requirements.txt` is a full captured Python environment and includes Jupyter-related packages as well as the image-processing dependencies. The commands below are enough to install everything it specifies.
+
+## Setup
 
 Clone the repository:
 
@@ -126,109 +102,90 @@ git clone https://github.com/Chetan-code-lrca/low-level-image-feature-extraction
 cd low-level-image-feature-extraction
 ```
 
-Create and activate a virtual environment:
+Create a virtual environment.
+
+### Linux / macOS
 
 ```bash
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
+```
+
+### Windows PowerShell
+
+```powershell
+py -m venv .venv
+.venv\Scripts\Activate.ps1
 ```
 
 Install the dependencies:
 
 ```bash
-pip install -r requirements.txt
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
-## Running the Examples
+## Run the examples
 
-### Colour
+The examples operate on the sample image in `data/sample.jpg`.
+
+### Colour features
 
 ```bash
 python -m examples.colour.colour_features
 ```
 
-This displays the RGB image, HSV representation, and RGB histogram and prints basic colour statistics.
+This shows the RGB image, HSV representation, and RGB histogram and prints basic colour statistics.
 
-### Texture
+### Texture features
 
 ```bash
 python -m examples.texture.texture_features
 ```
 
-This displays the grayscale image and histogram and prints mean, variance, and standard deviation.
+This converts the image to grayscale, displays the grayscale image and histogram, and prints the mean, variance, and standard deviation.
 
-### Shape
+### Shape features
 
 ```bash
 python -m examples.shape.shape_features
 ```
 
-This displays the original image, threshold image, Canny edges, and detected contours.
+This shows the thresholded image, Canny edges, and detected contours and reports contour measurements.
 
-### Feature Fusion
+### Feature fusion
 
 ```bash
 python -m examples.fusion.feature_fusion
 ```
 
-This demonstrates the combination of colour, texture, and shape values into one feature vector.
+This combines the colour, texture, and shape outputs into one feature vector.
 
-## Running the Tests
-
-Run the complete test suite:
+## Run the tests
 
 ```bash
 python -m pytest -v
 ```
 
-The project contains tests for:
+The test suite covers the colour, texture, shape, and fusion modules.
 
-- Colour feature extraction
-- Texture feature extraction
-- Shape feature extraction
-- Feature fusion
+## Notes on the implementation
 
-## Applications
+The project deliberately uses simple, easy-to-follow image statistics rather than advanced descriptors. That makes it useful for understanding how raw pixel information can be turned into features before moving on to more complex computer-vision pipelines.
 
-Low-level image features can be useful in applications such as:
+Thresholding and contour detection are sensitive to image content and background conditions, so the results can change substantially between images.
 
-- Medical image analysis
-- Content-Based Image Retrieval (CBIR)
-- Object analysis
-- Industrial inspection
-- Agricultural image analysis
-- Remote sensing
+## Possible extensions
 
-## Limitations
+Natural next steps include:
 
-This project intentionally uses simple techniques suitable for a basic Digital Image Processing implementation.
-
-It does not currently implement advanced descriptors such as:
-
-- GLCM
-- LBP
-- Gabor filters
-- Advanced shape descriptors
-- Machine-learning-based feature extraction
-
-Different images and backgrounds can also affect thresholding, contour detection, and simple statistical measurements.
-
-## Future Work
-
-Possible extensions include:
-
-- GLCM texture features
+- GLCM-based texture features
 - Local Binary Patterns (LBP)
 - Gabor filters
 - More robust shape descriptors
-- Feature normalization
-- Feature weighting
-- Image similarity measurement
-- Content-Based Image Retrieval
-
-## Educational Scope
-
-This project is intended as a learning-oriented Digital Image Processing project. The implementations prioritize clarity and understanding of the individual processing steps over advanced optimization.
+- Feature normalization and weighting
+- Image similarity and retrieval
+- A classifier built on the combined feature vectors
 
 ## License
 
