@@ -95,20 +95,15 @@ The repository's `requirements.txt` is a full captured Python environment and in
 
 ## Setup
 
-Clone the repository:
-
-```bash
-git clone https://github.com/Chetan-code-lrca/low-level-image-feature-extraction.git
-cd low-level-image-feature-extraction
-```
-
-Create a virtual environment.
+Create a virtual environment and install the repository dependencies.
 
 ### Linux / macOS
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
 ### Windows PowerShell
@@ -116,18 +111,13 @@ source .venv/bin/activate
 ```powershell
 py -m venv .venv
 .venv\Scripts\Activate.ps1
-```
-
-Install the dependencies:
-
-```bash
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
 ## Run the examples
 
-The examples operate on the sample image in `data/sample.jpg`.
+The example scripts currently read `data/sample.jpg`. The image path is defined directly in the example code, so replacing that file is the simplest way to experiment with another image without changing the scripts.
 
 ### Colour features
 
