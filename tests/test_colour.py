@@ -3,9 +3,10 @@ import cv2
 from src.colour.rgb_hsv import convert_to_rgb_hsv
 from src.colour.histogram import calculate_rgb_histogram
 from src.colour.statistics import calculate_rgb_statistics
+from examples.sample_image import ensure_sample_image
 
 
-IMAGE_PATH = "data/sample.jpg"
+IMAGE_PATH = ensure_sample_image()
 
 
 def test_rgb_hsv_conversion():
