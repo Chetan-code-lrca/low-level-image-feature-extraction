@@ -1,10 +1,11 @@
 import cv2
 import matplotlib.pyplot as plt
 
+from examples.sample_image import ensure_sample_image
 from src.shape.shape_features import extract_shape_features
 
 
-image_path = "data/sample.jpg"
+image_path = ensure_sample_image()
 
 image, gray, threshold, edges, contours, features = (
     extract_shape_features(image_path)
