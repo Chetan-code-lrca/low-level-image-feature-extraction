@@ -17,7 +17,7 @@ def test_shape_extraction():
     assert threshold is not None
     assert edges is not None
     assert contours is not None
-    assert isinstance(features, dict)
+    assert isinstance(features, list)
 
 
 def test_shape_features():
@@ -25,7 +25,6 @@ def test_shape_features():
         extract_shape_features(IMAGE_PATH)
     )
 
-    assert "contour_count" in features
-    assert "total_area" in features
-    assert "total_perimeter" in features
-    assert features["contour_count"] >= 0
+    assert isinstance(features, list)
+    assert all("area" in item and "perimeter" in item for item in features)
+    assert all(item["area"] >= 0 and item["perimeter"] >= 0 for item in features)
