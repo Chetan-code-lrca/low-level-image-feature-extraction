@@ -117,7 +117,7 @@ python -m pip install -r requirements.txt
 
 ## Run the examples
 
-The example scripts currently read `data/sample.ppm`. The image path is defined directly in the example code, so replacing that file is the simplest way to experiment with another image without changing the scripts.
+The example scripts use `examples/sample_image.py` to create a deterministic `data/sample.jpg` fixture when it is not already present. Replace `data/sample.jpg` with another image to experiment with a different input.
 
 ### Colour features
 
