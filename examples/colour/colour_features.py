@@ -1,11 +1,13 @@
 import matplotlib.pyplot as plt
 
+from examples.sample_image import ensure_sample_image
+
 from src.colour.rgb_hsv import convert_to_rgb_hsv
 from src.colour.histogram import calculate_rgb_histogram
 from src.colour.statistics import calculate_rgb_statistics
 
 
-image_path = "data/sample.jpg"
+image_path = ensure_sample_image()
 
 # Convert image to RGB and HSV
 original, rgb, hsv = convert_to_rgb_hsv(image_path)
