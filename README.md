@@ -117,7 +117,7 @@ python -m pip install -r requirements.txt
 
 ## Run the examples
 
-The example scripts currently read `data/sample.jpg`. The image path is defined directly in the example code, so replacing that file is the simplest way to experiment with another image without changing the scripts.
+The example scripts currently read `data/sample.ppm`. The image path is defined directly in the example code, so replacing that file is the simplest way to experiment with another image without changing the scripts.
 
 ### Colour features
 
