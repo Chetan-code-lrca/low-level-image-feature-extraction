@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from src.texture.texture_statistics import calculate_texture_statistics
 
 
-image_path = "data/sample.jpg"
+image_path = ensure_sample_image()
 
 # Read image in grayscale
 image = cv2.imread(image_path, 0)
