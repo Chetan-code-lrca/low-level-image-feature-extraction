@@ -1,9 +1,10 @@
 import cv2
 
+from examples.sample_image import ensure_sample_image
 from src.texture.texture_statistics import calculate_texture_statistics
 
 
-IMAGE_PATH = "data/sample.jpg"
+IMAGE_PATH = ensure_sample_image()
 
 
 def test_texture_statistics():
