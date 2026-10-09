@@ -35,14 +35,14 @@ def test_rgb_histogram_counts_pixels_per_channel():
         dtype=np.uint8,
     )
 
-    red, green, blue = calculate_rgb_histogram(image)
+    red, green, blue = (
+        histogram.reshape(-1) for histogram in calculate_rgb_histogram(image)
+    )
 
-    assert red.shape == (256, 1)
-    assert green.shape == (256, 1)
-    assert blue.shape == (256, 1)
-    assert (red[0, 0], red[255, 0]) == (2, 2)
-    assert (green[0, 0], green[255, 0]) == (2, 2)
-    assert (blue[0, 0], blue[255, 0]) == (3, 1)
+    assert red.size == green.size == blue.size == 256
+    assert (red[0], red[255]) == (2, 2)
+    assert (green[0], green[255]) == (2, 2)
+    assert (blue[0], blue[255]) == (3, 1)
 
 
 def test_rgb_statistics_return_expected_values():
