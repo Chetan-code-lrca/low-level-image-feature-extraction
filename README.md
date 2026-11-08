@@ -85,7 +85,7 @@ low-level-image-feature-extraction/
 
 ## Requirements
 
-- Python 3.10 or newer
+- Python 3.11 (the version currently tested by GitHub Actions; other Python versions are not yet validated by CI)
 - OpenCV
 - NumPy
 - Matplotlib
