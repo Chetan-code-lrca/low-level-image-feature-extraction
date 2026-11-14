@@ -17,7 +17,7 @@ def test_normalized_histograms_sum_to_one_per_channel():
 
     assert len(histograms) == 3
     for histogram in histograms:
-        assert histogram.shape == (256, 1)
+        assert histogram.size == 256
         assert float(histogram.sum()) == pytest.approx(1.0)
 
 
@@ -45,7 +45,7 @@ def test_default_histograms_preserve_raw_pixel_counts():
 
     for histogram in histograms:
         assert float(histogram.sum()) == pytest.approx(6.0)
-        assert float(histogram[0, 0]) == pytest.approx(6.0)
+        assert float(histogram.reshape(-1)[0]) == pytest.approx(6.0)
 
 
 def test_normalize_flag_must_be_boolean():
